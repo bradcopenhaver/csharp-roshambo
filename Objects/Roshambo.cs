@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Roshambo.Objects
 {
@@ -21,31 +22,61 @@ namespace Roshambo.Objects
 
     public void Shoot()
     {
-      if (_plays[0] == 'q' || _plays[0] == 'w' || _plays[0] == 'e')
+      if (ValidateInput() == true)
       {
-        _p1Play = _playDefinitions[_plays[0]];
-        _p2Play = _playDefinitions[_plays[1]];
+        if (_plays[0] == 'q' || _plays[0] == 'w' || _plays[0] == 'e')
+        {
+          _p1Play = _playDefinitions[_plays[0]];
+          _p2Play = _playDefinitions[_plays[1]];
+        }
+        else
+        {
+          _p2Play = _playDefinitions[_plays[0]];
+          _p1Play = _playDefinitions[_plays[1]];
+        }
+
+        if (_p1Play == _p2Play)
+        {
+          _outcome = "Draw";
+        }
+        else if(_p1Play == "rock" && _p2Play == "scissors" || _p1Play == "scissors" && _p2Play == "paper" || _p1Play == "paper" && _p2Play == "rock")
+        {
+          _player1Wins += 1;
+          _outcome = "Player 1 Wins!";
+        }
+        else
+        {
+          _player2wins += 1;
+          _outcome = "Player 2 Wins!";
+        }
       }
       else
       {
-        _p2Play = _playDefinitions[_plays[0]];
-        _p1Play = _playDefinitions[_plays[1]];
+        _outcome = "Oops! Your input was invalid. Try again!";
+      }
+    }
+
+    public bool ValidateInput()
+    {
+      if (_plays.Length == 2)
+      {
+        Match match1 = Regex.Match(_plays[0].ToString(), @"[qwe]");
+        Match match2 = Regex.Match(_plays[1].ToString(), @"[iop]");
+        Console.WriteLine(match1.Success);
+        // // if (match1.Success && match2.Success || Regex.Matches(_plays[1].ToString(), @"\[qwe]\") && Regex.Matches(_plays[0].ToString(), @"\[iop]\"))
+        // // {
+        // //   return true;
+        // }
+        // else
+        // {
+          return false;
+        // }
+      }
+      else
+      {
+        return false;
       }
 
-      if (_p1Play == _p2Play)
-      {
-        _outcome = "Draw";
-      }
-      else if(_p1Play == "rock" && _p2Play == "scissors" || _p1Play == "scissors" && _p2Play == "paper" || _p1Play == "paper" && _p2Play == "rock")
-      {
-        _player1Wins += 1;
-        _outcome = "Player 1 Wins!";
-      }
-      else
-      {
-        _player2wins += 1;
-        _outcome = "Player 2 Wins!";
-      }
     }
 
     public string GetOutcome()
