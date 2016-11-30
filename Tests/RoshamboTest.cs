@@ -14,7 +14,8 @@ namespace Roshambo
       Game testGame = new Game("qi");
       string expectedResult = "Draw";
       //Act
-      string result = testGame.Shoot();
+      testGame.Shoot();
+      string result = testGame.GetOutcome();
       //Assert
       Assert.Equal(expectedResult, result);
     }
@@ -37,7 +38,8 @@ namespace Roshambo
       //Arrange
       Game testGame = new Game(input);
       //Act
-      string result = testGame.Shoot();
+      testGame.Shoot();
+      string result = testGame.GetOutcome();
       //Assert
       Assert.Equal(expectedResult, result);
     }

@@ -14,6 +14,10 @@
           <p>Q = Rock</p>
           <p>W = Scissors</p>
           <p>E = Paper</p>
+          @if(Model != null)
+          {
+            <p>Wins for Player 1: @Model.GetPlayer1Count()</p>
+          }
         </div>
         <div class="col-sm-4">
           <h1>Roshambo!</h1>
@@ -24,13 +28,20 @@
             </div>
             <button type="submit" class="btn-danger">Roshambo It!</button>
           </form>
-          <h3>@Model</h3>
+          @if(Model != null)
+          {
+            <h3>@Model.GetOutcome()</h3>
+          }
         </div>
         <div class="col-sm-4">
           <h3>Player 2</h3>
           <p>I = Rock</p>
           <p>O = Scissors</p>
           <p>P = Paper</p>
+          @if(Model != null)
+          {
+            <p>Wins for Player 2: @Model.GetPlayer2Count()</p>
+          }
         </div>
       </div>
     </div>

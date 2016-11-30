@@ -5,11 +5,12 @@ namespace Roshambo.Objects
 {
   public class Game
   {
-    private int _player1Wins;
-    private int _player2wins;
+    private static int _player1Wins = 0;
+    private static int _player2wins = 0;
     private string _p1Play;
     private string _p2Play;
     private char[] _plays = new char[2];
+    private string _outcome;
 
     private Dictionary<char, string> _playDefinitions = new Dictionary<char, string>() {{'q', "rock"}, {'w', "scissors"}, {'e', "paper"}, {'i', "rock"}, {'o', "scissors"}, {'p', "paper"}};
 
@@ -18,7 +19,7 @@ namespace Roshambo.Objects
       _plays = input.ToCharArray();
     }
 
-    public string Shoot()
+    public void Shoot()
     {
       if (_plays[0] == 'q' || _plays[0] == 'w' || _plays[0] == 'e')
       {
@@ -33,16 +34,33 @@ namespace Roshambo.Objects
 
       if (_p1Play == _p2Play)
       {
-        return "Draw";
+        _outcome = "Draw";
       }
       else if(_p1Play == "rock" && _p2Play == "scissors" || _p1Play == "scissors" && _p2Play == "paper" || _p1Play == "paper" && _p2Play == "rock")
       {
-        return "Player 1 Wins!";
+        _player1Wins += 1;
+        _outcome = "Player 1 Wins!";
       }
       else
       {
-        return "Player 2 Wins!";
+        _player2wins += 1;
+        _outcome = "Player 2 Wins!";
       }
+    }
+
+    public string GetOutcome()
+    {
+      return _outcome;
+    }
+
+    public int GetPlayer1Count()
+    {
+      return _player1Wins;
+    }
+
+    public int GetPlayer2Count()
+    {
+      return _player2wins;
     }
   }
 }

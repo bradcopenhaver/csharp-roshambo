@@ -13,8 +13,8 @@ namespace Roshambo
       };
       Post["/result"] = _ =>{
         Game newGame = new Game(Request.Form["player-input"]);
-        string result = newGame.Shoot();
-        return View["index.cshtml", result];
+        newGame.Shoot();
+        return View["index.cshtml", newGame];
       };
     }
   }
