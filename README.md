@@ -17,3 +17,11 @@ This program will...
 5. Keep track of how many wins each player has.
   Input: Player 1 Wins
   Output: Player 1: 1 win
+
+  q = player1 rock
+  w = player1 scissors
+  e = player1 paper
+
+  i = player2 rock
+  o = player2 scissors
+  p = player2 paper
