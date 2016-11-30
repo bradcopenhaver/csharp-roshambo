@@ -25,3 +25,6 @@ This program will...
   i = player2 rock
   o = player2 scissors
   p = player2 paper
+
+###3 Player Game
+Players earn 1 "win" for each other player they beat in a round.
