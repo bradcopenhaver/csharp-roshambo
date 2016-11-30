@@ -62,21 +62,21 @@ namespace Roshambo.Objects
       {
         Match match1 = Regex.Match(_plays[0].ToString(), @"[qwe]");
         Match match2 = Regex.Match(_plays[1].ToString(), @"[iop]");
-        Console.WriteLine(match1.Success);
-        // // if (match1.Success && match2.Success || Regex.Matches(_plays[1].ToString(), @"\[qwe]\") && Regex.Matches(_plays[0].ToString(), @"\[iop]\"))
-        // // {
-        // //   return true;
-        // }
-        // else
-        // {
+        Match match3 = Regex.Match(_plays[1].ToString(), @"[qwe]");
+        Match match4 = Regex.Match(_plays[0].ToString(), @"[iop]");
+        if (match1.Success && match2.Success || match3.Success && match4.Success)
+        {
+          return true;
+        }
+        else
+        {
           return false;
-        // }
+        }
       }
       else
       {
         return false;
       }
-
     }
 
     public string GetOutcome()
